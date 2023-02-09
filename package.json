@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.9.5",
+    "framer-motion": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "wouter": "^2.10.0"
