@@ -21,18 +21,30 @@ export const [theme, vars] = createTheme({
             success: '',
             warning: '',
             error: ''
+        },
+        themeButton: {
+            top: '',
+            bottom: '',
+            innerCircle: ''
         }
+    },
+    card: {
+        basic_1: '',
+        basic_2: '',
+        basic_3: '',
+        basic_4: '',
+        border: ''
     }
 });
 
 createGlobalTheme('body', vars, {
     color: {
-        basic_1: '#fbf9f8',
-        basic_2: '#eee5e5',
-        basic_3: '#e0d2d6',
-        basic_4: '#cdc0cc',
-        basic_5: '#b3b1c3',
-        basic_6: '#94a3b8',
+        basic_1: '#f8fafc',
+        basic_2: '#f1f5f9',
+        basic_3: '#e2e8f0',
+        basic_4: '#cbd5e1',
+        basic_5: '#94a3b8',
+        basic_6: '#64748b',
         basic_contrast: '#151515',
         primary: '#4e95d7',
         secondary: '#8e349b',
@@ -46,7 +58,19 @@ createGlobalTheme('body', vars, {
             success: '#222222',
             warning: '#222222',
             error: '#111111'
+        },
+        themeButton: {
+            top: '#151515',
+            bottom: '#FFF',
+            innerCircle: '#ffce3b'
         }
+    },
+    card: {
+        basic_1: '#f3f4f6',
+        basic_2: '#e5e7eb',
+        basic_3: '#d1d5db',
+        basic_4: '#9ca3af',
+        border: '#9ca3af'
     }
 });
 
@@ -72,13 +96,26 @@ createGlobalTheme('html[data-theme=dark] body', vars, {
             success: '#111111',
             warning: '#111111',
             error: '#111111'
+        },
+
+        themeButton: {
+            top: '#FF0000',
+            bottom: '#FFF',
+            innerCircle: 'rgba(21, 21, 21, 1)'
         }
+    },
+    card: {
+        basic_1: '',
+        basic_2: '',
+        basic_3: '',
+        basic_4: '',
+        border: ''
     }
 });
 
 globalStyle('body', {
     backgroundColor: vars.color.basic_1,
     color: vars.color.text.basic,
-    fontFamily: 'sans-serif',
+    fontFamily: '\'Inter\', sans-serif',
     margin: 0
 });
