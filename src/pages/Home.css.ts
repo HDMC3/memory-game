@@ -7,7 +7,10 @@ export const container = style({
     alignItems: 'center',
     backgroundColor: vars.color.basic_1,
     padding: '2rem 1rem',
-    gap: '3rem'
+    gap: '3rem',
+    boxSizing: 'border-box',
+    minHeight: '100vh',
+    background: `linear-gradient(65deg, ${vars.color.basic_2} 0 20%, ${vars.color.basic_1} 20% 85%, ${vars.color.basic_2} 85% 100%)`
 });
 
 export const innerContainer = style({
@@ -17,7 +20,8 @@ export const innerContainer = style({
     boxSizing: 'border-box',
     padding: '3rem 0',
     borderRadius: 10,
-    position: 'relative'
+    position: 'relative',
+    backgroundColor: vars.color.basic_3
 });
 
 export const themeButton = style({

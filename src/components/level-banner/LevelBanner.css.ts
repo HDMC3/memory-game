@@ -4,7 +4,8 @@ import { vars } from '../../App.css';
 export const levelBannerContainer = style({
     border: `4px solid ${vars.color.basic_contrast}`,
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: vars.color.basic_1
 });
 
 export const levelBannerTitle = style({
@@ -26,7 +27,7 @@ export const itemsContainer = style({
 
 export const playButton = style({
     border: `3px solid ${vars.color.basic_contrast}`,
-    background: vars.color.basic_2,
+    background: vars.color.basic_3,
     color: vars.color.text.basic,
     fontWeight: 'bold',
     fontSize: '1.5rem',
@@ -45,6 +46,5 @@ export const playButton = style({
 });
 
 export const playIcon = style({
-    transition: 'fill 0.3s',
     fill: vars.color.basic_contrast
 });

@@ -17,7 +17,7 @@ export const card = style({
 export const cardImage = style({
     position: 'absolute',
     width: '110%',
-    filter: 'drop-shadow(2px 3px 0px rgba(32, 32, 32))',
+    filter: `drop-shadow(2px 3px 0px ${vars.color.basic_contrast})`,
     objectFit: 'fill'
 });
 
