@@ -1,20 +1,14 @@
 import { vars } from '../App.css';
 import { LevelBannerItem } from '../components/level-banner-item/LevelBannerItem';
 import { LevelBanner } from '../components/level-banner/LevelBanner';
-import { container, homeDescription, innerContainer, levelsContainer, themeButton, title } from './Home.css';
+import { ThemeButton } from '../components/theme-button/ThemeButton';
+import { container, homeDescription, innerContainer, levelsContainer, title } from './Home.css';
 
 export const Home = () => {
-    const handleChangeTheme = () => {
-        const currentTheme = document.documentElement.dataset.theme;
-        const newTheme = currentTheme === 'dark' ? '' : 'dark';
-        document.documentElement.dataset.theme = newTheme;
-        localStorage.setItem('theme', newTheme);
-    };
-
     return (
         <main className={container}>
             <div className={innerContainer}>
-                <button className={themeButton} onClick={handleChangeTheme}></button>
+                <ThemeButton />
 
                 <h1 className={title}>Poke Memory</h1>
 
