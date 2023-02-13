@@ -25,6 +25,7 @@ export const Home = () => {
             </div>
             <section className={levelsContainer}>
                 <LevelBanner
+                    level="ease"
                     levelName="Facil"
                     levelBg={vars.color.success}
                     levelColor={vars.color.text.success}
@@ -36,6 +37,7 @@ export const Home = () => {
                 </LevelBanner>
 
                 <LevelBanner
+                    level="medium"
                     levelName="Medio"
                     levelBg={vars.color.warning}
                     levelColor={vars.color.text.warning}
@@ -47,6 +49,7 @@ export const Home = () => {
                 </LevelBanner>
 
                 <LevelBanner
+                    level="hard"
                     levelName="Dificil"
                     levelBg={vars.color.error}
                     levelColor={vars.color.text.error}

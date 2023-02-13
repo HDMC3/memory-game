@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
+import { useLocation } from 'wouter';
 import { vars } from '../../App.css';
 import { playButton, itemsContainer, levelBannerContainer, levelBannerTitle, playIcon } from './LevelBanner.css';
 
@@ -7,9 +8,16 @@ interface Props {
     levelName: string
     levelBg: string
     levelColor: string
+    level: 'ease' | 'medium' | 'hard'
 }
 
-export const LevelBanner = ({ children, levelName, levelBg, levelColor }: PropsWithChildren<Props>) => {
+export const LevelBanner = ({ children, levelName, levelBg, levelColor, level }: PropsWithChildren<Props>) => {
+    const [, setLocation] = useLocation();
+
+    const handleRedirect = () => {
+        setLocation(`/game?level=${level}`);
+    };
+
     return (
 
         <section className={ levelBannerContainer }>
@@ -28,6 +36,7 @@ export const LevelBanner = ({ children, levelName, levelBg, levelColor }: PropsW
 
                 <motion.button
                     className={ playButton }
+                    onClick={handleRedirect}
                     animate={{
                         x: [100, 0],
                         opacity: [0, 0.5, 1],
