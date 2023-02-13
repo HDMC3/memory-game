@@ -16,8 +16,8 @@ export const LevelBannerItem = ({ image, entryOrder }: Props) => {
     return (
         <motion.div
             className={cardContainer}
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
                 type: 'spring',
                 damping: 10,
@@ -39,8 +39,7 @@ export const LevelBannerItem = ({ image, entryOrder }: Props) => {
                             '0 0 0 0 rgba(0, 0, 0, 0)',
                             `3px 3px 0 0 ${vars.color.basic_contrast}`
                         ],
-                        rotateY: [180, 180],
-                        scale: [0.9, 1]
+                        rotateY: [180, 180]
                     }}
                     transition={{
                         duration: 0.4,
