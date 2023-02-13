@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, type SyntheticEvent } from 'react';
 import { vars } from '../../App.css';
-import { getImageColors } from '../../helpers/images/getImageColors';
 import { card, cardBack, cardFront, cardImage, cardContainer } from './LevelBannerItem.css';
 
 interface Props {
@@ -15,14 +13,6 @@ interface Props {
 const spriteBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
 export const LevelBannerItem = ({ image, entryOrder }: Props) => {
-    const [background, setBackground] = useState<string>('');
-
-    const hadleImageLoad = (e: SyntheticEvent<HTMLImageElement>) => {
-        const img = e.target as HTMLImageElement;
-        const rgbColors = getImageColors(img, 2);
-        setBackground(rgbColors[0]);
-    };
-
     return (
         <motion.div
             className={cardContainer}
@@ -44,7 +34,6 @@ export const LevelBannerItem = ({ image, entryOrder }: Props) => {
             >
                 <motion.div
                     className={cardFront}
-                    style={{ background }}
                     animate={{
                         boxShadow: [
                             '0 0 0 0 rgba(0, 0, 0, 0)',
@@ -59,7 +48,6 @@ export const LevelBannerItem = ({ image, entryOrder }: Props) => {
                     }}
                 >
                     <img
-                        onLoad={hadleImageLoad}
                         className={cardImage}
                         src={`${spriteBaseUrl}${image.name}.png`}
                         alt="Pokemon sprite"
