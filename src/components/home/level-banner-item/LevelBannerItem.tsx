@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 import { card, cardBack, cardFront, cardImage, cardContainer } from './LevelBannerItem.css';
 
 interface Props {

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 import { useLocation } from 'wouter';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 import { playButton, itemsContainer, levelBannerContainer, levelBannerTitle, playIcon } from './LevelBanner.css';
 
 interface Props {

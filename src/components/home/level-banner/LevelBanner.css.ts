@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 
 export const levelBannerContainer = style({
     border: `4px solid ${vars.color.basic_contrast}`,

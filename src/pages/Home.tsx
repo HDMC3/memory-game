@@ -1,7 +1,7 @@
 import { vars } from '../App.css';
-import { LevelBannerItem } from '../components/level-banner-item/LevelBannerItem';
-import { LevelBanner } from '../components/level-banner/LevelBanner';
-import { ThemeButton } from '../components/theme-button/ThemeButton';
+import { LevelBannerItem } from '../components/home/level-banner-item/LevelBannerItem';
+import { LevelBanner } from '../components/home/level-banner/LevelBanner';
+import { ThemeButton } from '../components/ui/theme-button/ThemeButton';
 import { container, homeDescription, innerContainer, levelsContainer, title } from './Home.css';
 
 export const Home = () => {

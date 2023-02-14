@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 
 export const button = style({
     border: `3px solid ${vars.color.basic_contrast}`,

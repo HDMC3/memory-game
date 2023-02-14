@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 import { button } from './Button.css';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { style, type ComplexStyleRule } from '@vanilla-extract/css';
-import { vars } from '../../App.css';
+import { vars } from '../../../App.css';
 
 export const cardContainer = style({
     perspective: 400
