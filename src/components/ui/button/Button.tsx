@@ -2,9 +2,11 @@ import { type PropsWithChildren } from 'react';
 import { vars } from '../../../App.css';
 import { button } from './Button.css';
 
+
+export type ButtonColor = 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'default';
 interface Props {
     onClick?: () => void
-    color?: 'success' | 'warning' | 'error' | 'primary' | 'secondary' | 'default'
+    color?: ButtonColor
     style?: React.CSSProperties
     className?: string
 }
