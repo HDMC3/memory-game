@@ -105,7 +105,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
             return {
                 ...state,
                 cards: state.cards.map(card => {
-                    if (card.id === cardId || activeCard?.id === cardId) {
+                    if (card.id === cardId || card.id === activeCard?.id) {
                         return {
                             ...card,
                             status: 'done'
