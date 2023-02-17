@@ -1,3 +1,4 @@
+import { GameBoard } from '../components/game/game-board/GameBoard';
 import { Button } from '../components/ui/button/Button';
 import { ThemeButton } from '../components/ui/theme-button/ThemeButton';
 import { gameContainer, statValue, stat, statsContainer, titleStat, timeStat, moveStat, levelButton } from './Game.css';
@@ -30,6 +31,8 @@ export const Game = () => {
                     </span>
                 </div>
             </div>
+
+            <GameBoard />
         </div>
     );
 };
