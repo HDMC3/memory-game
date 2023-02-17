@@ -1,9 +1,15 @@
 import { createContext, useReducer, type PropsWithChildren } from 'react';
-import { GameActionKind, gameReducer, initialState } from '../reducers/gameReducer';
+import { GameActionKind, gameReducer, type GameState, initialState } from '../reducers/gameReducer';
 
-export const GameContext = createContext({});
+interface GameContextValue {
+    state: GameState
+    increaseMoves: () => void
+    restartMoves: () => void
+    changeGameLevel: (newLevel: 'ease' | 'medium' | 'hard') => void
+    revealCard: (cardId: number) => void
+}
 
-
+export const GameContext = createContext<GameContextValue | undefined>(undefined);
 
 export const GameProvider = ({ children }: PropsWithChildren) => {
     const [state, dispatch] = useReducer(gameReducer, initialState);
