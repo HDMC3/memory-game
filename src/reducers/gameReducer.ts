@@ -1,17 +1,14 @@
 import { type Card } from '../types/card';
 
 export const enum GameActionKind {
-    INCREASE_MOVES = 'INCREASE_MOVES',
     RESTART_MOVES = 'RESTART_MOVES',
     CHANGE_LEVEL = 'CHANGE_LEVEL',
     SET_CARDS = 'SET_CARDS',
     REVEAL_CARD = 'REVEAL_CARD',
     SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
-    REMOVE_ACTIVE_CARD = 'REMOVE_ACTIVE_CARD',
     SET_DONE_CARDS = 'SET_DONE_CARDS',
     HIDE_CARDS = 'HIDE_CARDS',
     START_CHECKING_MOVE = 'START_CHECKING_MOVE',
-    END_CHECKING_MOVE = 'END_CHECKING_MOVE'
 }
 
 export interface GameState {
@@ -25,12 +22,9 @@ export interface GameState {
 export type GameAction =
     { type: GameActionKind.SET_CARDS, payload: Card[] }
     | {
-        type: GameActionKind.INCREASE_MOVES
-        | GameActionKind.RESTART_MOVES
+        type: GameActionKind.RESTART_MOVES
         | GameActionKind.START_CHECKING_MOVE
-        | GameActionKind.END_CHECKING_MOVE
         | GameActionKind.HIDE_CARDS
-        | GameActionKind.REMOVE_ACTIVE_CARD
     }
     | { type: GameActionKind.CHANGE_LEVEL, payload: 'ease' | 'medium' | 'hard' }
     | { type: GameActionKind.REVEAL_CARD, payload: { cardId: number } }
@@ -48,12 +42,6 @@ export const initialState: GameState = {
 
 export const gameReducer = (state: GameState, action: GameAction): GameState => {
     switch (action.type) {
-        case GameActionKind.INCREASE_MOVES:
-            return {
-                ...state,
-                movesCount: state.movesCount + 1
-            };
-
         case GameActionKind.RESTART_MOVES:
             return {
                 ...state,
@@ -92,14 +80,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 activeCard: { ...state.cards[action.payload.cardId] }
             };
 
-        case GameActionKind.REMOVE_ACTIVE_CARD:
-            return {
-                ...state,
-                activeCard: null
-            };
-
         case GameActionKind.SET_DONE_CARDS: {
-            const { activeCard } = state;
+            const { activeCard, movesCount } = state;
             const { cardId } = action.payload;
 
             return {
@@ -113,7 +95,10 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                     }
 
                     return card;
-                })
+                }),
+                movesCount: movesCount + 1,
+                activeCard: null,
+                checkingMove: false
             };
         }
         case GameActionKind.HIDE_CARDS:
@@ -130,19 +115,16 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                     return {
                         ...card
                     };
-                })
+                }),
+                movesCount: state.movesCount + 1,
+                activeCard: null,
+                checkingMove: false
             };
 
         case GameActionKind.START_CHECKING_MOVE:
             return {
                 ...state,
                 checkingMove: true
-            };
-
-        case GameActionKind.END_CHECKING_MOVE:
-            return {
-                ...state,
-                checkingMove: false
             };
 
         default:

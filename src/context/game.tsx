@@ -4,7 +4,6 @@ import { type Card } from '../types/card';
 
 interface GameContextValue {
     state: GameState
-    increaseMoves: () => void
     restartMoves: () => void
     changeGameLevel: (newLevel: 'ease' | 'medium' | 'hard') => void
     setCards: (cards: Card[]) => void
@@ -15,10 +14,6 @@ export const GameContext = createContext<GameContextValue | undefined>(undefined
 
 export const GameProvider = ({ children }: PropsWithChildren) => {
     const [state, dispatch] = useReducer(gameReducer, initialState);
-
-    const increaseMoves = () => {
-        dispatch({ type: GameActionKind.INCREASE_MOVES });
-    };
 
     const restartMoves = () => {
         dispatch({ type: GameActionKind.RESTART_MOVES });
@@ -47,25 +42,18 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
         const card = cards[cardId];
 
         if (activeCard.pokemon.id === card.pokemon.id) {
-            dispatch({ type: GameActionKind.INCREASE_MOVES });
-            dispatch({ type: GameActionKind.SET_DONE_CARDS, payload: { cardId } }); // dentro de esta accion se podria establecer la carta activa a null
-            dispatch({ type: GameActionKind.REMOVE_ACTIVE_CARD });
-            dispatch({ type: GameActionKind.END_CHECKING_MOVE });
+            dispatch({ type: GameActionKind.SET_DONE_CARDS, payload: { cardId } });
             return;
         }
 
         setTimeout(() => {
-            dispatch({ type: GameActionKind.INCREASE_MOVES });
-            dispatch({ type: GameActionKind.HIDE_CARDS }); // dentro de esta accion se podria establece la carta activa a null y checkingMove a false
-            dispatch({ type: GameActionKind.REMOVE_ACTIVE_CARD });
-            dispatch({ type: GameActionKind.END_CHECKING_MOVE });
+            dispatch({ type: GameActionKind.HIDE_CARDS });
         }, 1000);
     };
 
     return (
         <GameContext.Provider value={{
             state,
-            increaseMoves,
             restartMoves,
             changeGameLevel,
             revealCard,
