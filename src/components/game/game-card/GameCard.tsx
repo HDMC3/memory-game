@@ -1,23 +1,37 @@
 import { type PropsWithChildren } from 'react';
+import { useGame } from '../../../hooks/useGame';
+import { type Card } from '../../../types/card';
 import { centerPokeball, gameCard, gameCardBack, gameCardContainer, gameCardFront, gameCardImage } from './GameCard.css';
 
 interface Props {
-    pokemonName: string
-    imageName: string
-    onReveal?: () => void
+    card: Card
 }
 
 const spriteBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
-export const GameCard = ({ pokemonName, imageName }: PropsWithChildren<Props>) => {
+export const GameCard = ({ card: { id, status, pokemon } }: PropsWithChildren<Props>) => {
+    const { state: { checkingMove }, revealCard } = useGame();
+
+    const handleClick = () => {
+        if (status === 'done' || checkingMove) return;
+        revealCard(id);
+    };
+
     return (
         <div className={gameCardContainer}>
-            <div className={gameCard}>
+            <div
+                onClick={handleClick}
+                className={gameCard + ' ' + (
+                    status === 'done' || status === 'reveal'
+                        ? 'reveal'
+                        : ''
+                )}
+            >
                 <div className={gameCardFront}>
                     <img
                         className={gameCardImage}
-                        src={`${spriteBaseUrl}${imageName}`}
-                        alt={`Imagen del pokemon ${pokemonName} en la tarjeta`}
+                        src={`${spriteBaseUrl}${pokemon.image}`}
+                        alt={`Imagen del pokemon ${pokemon.name} en la tarjeta`}
                     />
                 </div>
                 <div className={gameCardBack}>

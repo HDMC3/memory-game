@@ -1,16 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useGame } from '../../../hooks/useGame';
 import { getRandomPokemons } from '../../../services/pokemons';
+import { type Card } from '../../../types/card';
 import { GameCard } from '../game-card/GameCard';
 import { gameBoard, gameBoardContainer } from './GameBoard.css';
 
 export const GameBoard = () => {
-    const [pokemons, setPokemons] = useState<any[]>([]);
+    const { state: { cards }, setCards } = useGame();
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        getRandomPokemons(12)
+        getRandomPokemons(20)
             .then(pokemons => {
-                setPokemons(pokemons);
+                const cards: Card[] = pokemons.map((pokemon, i) => {
+                    return {
+                        id: i,
+                        pokemon,
+                        status: 'hidden'
+                    };
+                });
+                setCards(cards);
             });
     }, []);
 
@@ -18,8 +26,11 @@ export const GameBoard = () => {
         <div className={gameBoardContainer}>
             <div className={gameBoard}>
                 {
-                    pokemons.map((pokemon, i) => {
-                        return <GameCard key={i} imageName={pokemon.image} pokemonName={pokemon.name} />;
+                    cards.map((card, i) => {
+                        return <GameCard
+                            key={i}
+                            card={card}
+                        />;
                     })
                 }
             </div>

@@ -43,6 +43,7 @@ const config = {
         '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-confusing-void-expression': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
         '@typescript-eslint/indent': ['error', 4, indentConfigOptions],
         'no-multiple-empty-lines': ['error', { max: 5, maxEOF: 1, maxBOF: 1 }],
         indent: ['error', 4, indentConfigOptions],
