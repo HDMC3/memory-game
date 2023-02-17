@@ -8,6 +8,7 @@ interface GameContextValue {
     changeGameLevel: (newLevel: 'ease' | 'medium' | 'hard') => void
     setCards: (cards: Card[]) => void
     revealCard: (cardId: number) => void
+    increaseTime: () => void
 }
 
 export const GameContext = createContext<GameContextValue | undefined>(undefined);
@@ -21,6 +22,10 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
 
     const changeGameLevel = (newLevel: 'ease' | 'medium' | 'hard') => {
         dispatch({ type: GameActionKind.CHANGE_LEVEL, payload: newLevel });
+    };
+
+    const increaseTime = () => {
+        dispatch({ type: GameActionKind.INCREASE_TIME });
     };
 
     const setCards = (cards: Card[]) => {
@@ -57,7 +62,8 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
             restartMoves,
             changeGameLevel,
             revealCard,
-            setCards
+            setCards,
+            increaseTime
         }}
         >
             { children }

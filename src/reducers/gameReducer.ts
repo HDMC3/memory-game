@@ -9,11 +9,14 @@ export const enum GameActionKind {
     SET_DONE_CARDS = 'SET_DONE_CARDS',
     HIDE_CARDS = 'HIDE_CARDS',
     START_CHECKING_MOVE = 'START_CHECKING_MOVE',
+    INCREASE_TIME = 'INCREASE_TIME'
 }
 
 export interface GameState {
     movesCount: number
     level: 'ease' | 'medium' | 'hard'
+    time: number
+    gameStatus: 'pending' | 'playing' | 'completed'
     checkingMove: boolean
     cards: Card[]
     activeCard: Card | null
@@ -25,6 +28,7 @@ export type GameAction =
         type: GameActionKind.RESTART_MOVES
         | GameActionKind.START_CHECKING_MOVE
         | GameActionKind.HIDE_CARDS
+        | GameActionKind.INCREASE_TIME
     }
     | { type: GameActionKind.CHANGE_LEVEL, payload: 'ease' | 'medium' | 'hard' }
     | { type: GameActionKind.REVEAL_CARD, payload: { cardId: number } }
@@ -35,6 +39,8 @@ export type GameAction =
 export const initialState: GameState = {
     movesCount: 0,
     level: 'ease',
+    time: 0,
+    gameStatus: 'pending',
     checkingMove: false,
     cards: [],
     activeCard: null
@@ -54,13 +60,20 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 level: action.payload
             };
 
+        case GameActionKind.INCREASE_TIME:
+            return {
+                ...state,
+                time: state.time + 1
+            };
+
         case GameActionKind.SET_CARDS:
             return {
                 ...state,
                 cards: action.payload
             };
 
-        case GameActionKind.REVEAL_CARD:
+        case GameActionKind.REVEAL_CARD: {
+            const newGameStatus = state.movesCount === 0 ? 'playing' : state.gameStatus;
             return {
                 ...state,
                 cards: state.cards.map(card => {
@@ -71,8 +84,10 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                         };
                     }
                     return card;
-                })
+                }),
+                gameStatus: newGameStatus
             };
+        }
 
         case GameActionKind.SET_ACTIVE_CARD:
             return {
@@ -81,8 +96,11 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
             };
 
         case GameActionKind.SET_DONE_CARDS: {
-            const { activeCard, movesCount } = state;
+            const { activeCard, movesCount, cards } = state;
             const { cardId } = action.payload;
+            const newGameStatus = cards.filter(c => c.status !== 'done').length === 2
+                ? 'completed'
+                : state.gameStatus;
 
             return {
                 ...state,
@@ -98,7 +116,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 }),
                 movesCount: movesCount + 1,
                 activeCard: null,
-                checkingMove: false
+                checkingMove: false,
+                gameStatus: newGameStatus
             };
         }
         case GameActionKind.HIDE_CARDS:
