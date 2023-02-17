@@ -1,11 +1,13 @@
 import { createContext, useReducer, type PropsWithChildren } from 'react';
 import { GameActionKind, gameReducer, type GameState, initialState } from '../reducers/gameReducer';
+import { type Card } from '../types/card';
 
 interface GameContextValue {
     state: GameState
     increaseMoves: () => void
     restartMoves: () => void
     changeGameLevel: (newLevel: 'ease' | 'medium' | 'hard') => void
+    setCards: (cards: Card[]) => void
     revealCard: (cardId: number) => void
 }
 
@@ -26,6 +28,10 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
         dispatch({ type: GameActionKind.CHANGE_LEVEL, payload: newLevel });
     };
 
+    const setCards = (cards: Card[]) => {
+        dispatch({ type: GameActionKind.SET_CARDS, payload: cards });
+    };
+
     const revealCard = (cardId: number) => {
         const { activeCard, cards } = state;
 
@@ -44,6 +50,7 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
             dispatch({ type: GameActionKind.INCREASE_MOVES });
             dispatch({ type: GameActionKind.SET_DONE_CARDS, payload: { cardId } }); // dentro de esta accion se podria establecer la carta activa a null
             dispatch({ type: GameActionKind.REMOVE_ACTIVE_CARD });
+            dispatch({ type: GameActionKind.END_CHECKING_MOVE });
             return;
         }
 
@@ -61,7 +68,8 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
             increaseMoves,
             restartMoves,
             changeGameLevel,
-            revealCard
+            revealCard,
+            setCards
         }}
         >
             { children }
