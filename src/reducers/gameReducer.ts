@@ -12,9 +12,14 @@ export const enum GameActionKind {
     INCREASE_TIME = 'INCREASE_TIME'
 }
 
+export type GameLevel =
+    { name: 'ease', cardsNumber: 12 }
+    | { name: 'medium', cardsNumber: 20 }
+    | { name: 'hard', cardsNumber: 30 };
+
 export interface GameState {
     movesCount: number
-    level: 'ease' | 'medium' | 'hard'
+    level: GameLevel
     time: number
     gameStatus: 'pending' | 'playing' | 'completed'
     checkingMove: boolean
@@ -30,7 +35,7 @@ export type GameAction =
         | GameActionKind.HIDE_CARDS
         | GameActionKind.INCREASE_TIME
     }
-    | { type: GameActionKind.CHANGE_LEVEL, payload: 'ease' | 'medium' | 'hard' }
+    | { type: GameActionKind.CHANGE_LEVEL, payload: GameLevel }
     | { type: GameActionKind.REVEAL_CARD, payload: { cardId: number } }
     | { type: GameActionKind.SET_ACTIVE_CARD, payload: { cardId: number } }
     | { type: GameActionKind.SET_DONE_CARDS, payload: { cardId: number } }
@@ -38,7 +43,7 @@ export type GameAction =
 
 export const initialState: GameState = {
     movesCount: 0,
-    level: 'ease',
+    level: { name: 'medium', cardsNumber: 20 },
     time: 0,
     gameStatus: 'pending',
     checkingMove: false,

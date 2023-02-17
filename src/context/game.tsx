@@ -1,11 +1,11 @@
 import { createContext, useReducer, type PropsWithChildren } from 'react';
-import { GameActionKind, gameReducer, type GameState, initialState } from '../reducers/gameReducer';
+import { GameActionKind, gameReducer, type GameState, initialState, type GameLevel } from '../reducers/gameReducer';
 import { type Card } from '../types/card';
 
 interface GameContextValue {
     state: GameState
     restartMoves: () => void
-    changeGameLevel: (newLevel: 'ease' | 'medium' | 'hard') => void
+    changeGameLevel: (newLevel: GameLevel) => void
     setCards: (cards: Card[]) => void
     revealCard: (cardId: number) => void
     increaseTime: () => void
@@ -20,7 +20,7 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
         dispatch({ type: GameActionKind.RESTART_MOVES });
     };
 
-    const changeGameLevel = (newLevel: 'ease' | 'medium' | 'hard') => {
+    const changeGameLevel = (newLevel: GameLevel) => {
         dispatch({ type: GameActionKind.CHANGE_LEVEL, payload: newLevel });
     };
 
