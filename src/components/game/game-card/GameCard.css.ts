@@ -14,7 +14,7 @@ export const gameCard = style({
     maxWidth: 200,
     width: 100,
     position: 'relative',
-    transition: 'box-shadow 0.3s 0.3s, transform 0.3s',
+    transition: 'box-shadow 0.3s, transform 0.3s',
     transformStyle: 'preserve-3d',
     borderRadius: 10,
     selectors: {
