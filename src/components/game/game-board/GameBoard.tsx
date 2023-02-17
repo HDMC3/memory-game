@@ -6,10 +6,10 @@ import { GameCard } from '../game-card/GameCard';
 import { gameBoard, gameBoardContainer } from './GameBoard.css';
 
 export const GameBoard = () => {
-    const { state: { cards }, setCards } = useGame();
+    const { state: { cards, level }, setCards } = useGame();
 
     useEffect(() => {
-        getRandomPokemons(20)
+        getRandomPokemons(level.cardsNumber)
             .then(pokemons => {
                 const cards: Card[] = pokemons.map((pokemon, i) => {
                     return {
@@ -20,7 +20,7 @@ export const GameBoard = () => {
                 });
                 setCards(cards);
             });
-    }, []);
+    }, [level]);
 
     return (
         <div className={gameBoardContainer}>
