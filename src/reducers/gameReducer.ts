@@ -61,7 +61,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
 
         case GameActionKind.CHANGE_LEVEL:
             return {
-                ...state,
+                ...initialState,
                 level: action.payload
             };
 
