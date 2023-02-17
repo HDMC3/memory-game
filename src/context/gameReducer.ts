@@ -1,45 +1,6 @@
-import { type Card } from '../types/card';
-
-export const enum GameActionKind {
-    RESTART_MOVES = 'RESTART_MOVES',
-    CHANGE_LEVEL = 'CHANGE_LEVEL',
-    SET_CARDS = 'SET_CARDS',
-    REVEAL_CARD = 'REVEAL_CARD',
-    SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
-    SET_DONE_CARDS = 'SET_DONE_CARDS',
-    HIDE_CARDS = 'HIDE_CARDS',
-    START_CHECKING_MOVE = 'START_CHECKING_MOVE',
-    INCREASE_TIME = 'INCREASE_TIME'
-}
-
-export type GameLevel =
-    { name: 'ease', cardsNumber: 12 }
-    | { name: 'medium', cardsNumber: 20 }
-    | { name: 'hard', cardsNumber: 30 };
-
-export interface GameState {
-    movesCount: number
-    level: GameLevel
-    time: number
-    gameStatus: 'pending' | 'playing' | 'completed'
-    checkingMove: boolean
-    cards: Card[]
-    activeCard: Card | null
-}
-
-export type GameAction =
-    { type: GameActionKind.SET_CARDS, payload: Card[] }
-    | {
-        type: GameActionKind.RESTART_MOVES
-        | GameActionKind.START_CHECKING_MOVE
-        | GameActionKind.HIDE_CARDS
-        | GameActionKind.INCREASE_TIME
-    }
-    | { type: GameActionKind.CHANGE_LEVEL, payload: GameLevel }
-    | { type: GameActionKind.REVEAL_CARD, payload: { cardId: number } }
-    | { type: GameActionKind.SET_ACTIVE_CARD, payload: { cardId: number } }
-    | { type: GameActionKind.SET_DONE_CARDS, payload: { cardId: number } }
-;
+import { GameActionKind } from './types/enums';
+import { type GameAction } from './types/game-action';
+import { type GameState } from './types/game-state';
 
 export const initialState: GameState = {
     movesCount: 0,

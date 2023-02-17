@@ -1,6 +1,9 @@
 import { createContext, useReducer, type PropsWithChildren } from 'react';
-import { GameActionKind, gameReducer, type GameState, initialState, type GameLevel } from '../reducers/gameReducer';
+import { gameReducer, initialState } from './gameReducer';
 import { type Card } from '../types/card';
+import { type GameState } from './types/game-state';
+import { type GameLevel } from '../types/game-level';
+import { GameActionKind } from './types/enums';
 
 interface GameContextValue {
     state: GameState

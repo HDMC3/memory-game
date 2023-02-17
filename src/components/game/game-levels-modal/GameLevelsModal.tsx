@@ -1,6 +1,6 @@
 import { type MouseEvent, useEffect } from 'react';
 import { useGame } from '../../../hooks/useGame';
-import { type GameLevel } from '../../../reducers/gameReducer';
+import { type GameLevel } from '../../../types/game-level';
 import { Button } from '../../ui/button/Button';
 import { modal, modalBody, modalContainer, modalHeader, modalTitle } from './GameLevelsModal.css';
 
