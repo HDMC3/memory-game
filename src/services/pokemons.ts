@@ -5,7 +5,7 @@ const MAX_FILE_IDX = 25;
 
 type EASE = 12;
 type MEDIUM = 20;
-type HARD = 30;
+type HARD = 28;
 
 export const getRandomPokemons = async (pokemonsNumber: EASE | MEDIUM | HARD) => {
     let dataIdxs = [];

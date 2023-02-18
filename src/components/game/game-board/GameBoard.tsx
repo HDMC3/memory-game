@@ -3,7 +3,13 @@ import { useGame } from '../../../hooks/useGame';
 import { getRandomPokemons } from '../../../services/pokemons';
 import { type Card } from '../../../types/card';
 import { GameCard } from '../game-card/GameCard';
-import { gameBoard, gameBoardContainer } from './GameBoard.css';
+import { gameBoard, gameBoardContainer, gameBoardContainerEase, gameBoardContainerHard, gameBoardContainerMedium } from './GameBoard.css';
+
+const levelColumnsClasses = {
+    ease: gameBoardContainerEase,
+    medium: gameBoardContainerMedium,
+    hard: gameBoardContainerHard
+};
 
 export const GameBoard = () => {
     const { state: { cards, level }, setCards } = useGame();
@@ -23,7 +29,12 @@ export const GameBoard = () => {
     }, [level]);
 
     return (
-        <div className={gameBoardContainer}>
+        <div
+            className={
+                gameBoardContainer + ' ' +
+                levelColumnsClasses[level.name]
+            }
+        >
             <div className={gameBoard}>
                 {
                     cards.map((card, i) => {

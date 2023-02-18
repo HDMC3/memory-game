@@ -4,7 +4,7 @@ import { type GameState } from './types/game-state';
 
 export const initialState: GameState = {
     movesCount: 0,
-    level: { name: 'medium', cardsNumber: 20 },
+    level: { name: 'ease', cardsNumber: 12 },
     time: 0,
     gameStatus: 'pending',
     checkingMove: false,

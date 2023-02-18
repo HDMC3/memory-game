@@ -54,7 +54,7 @@ export const GameLevelsModal = ({ open, onClose }: Props) => {
                             </Button>
 
                             <Button
-                                onClick={() => handleSelectLevel({ name: 'hard', cardsNumber: 30 })}
+                                onClick={() => handleSelectLevel({ name: 'hard', cardsNumber: 28 })}
                                 color='error'
                             >
                                 Dificil

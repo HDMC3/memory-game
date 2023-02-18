@@ -4,8 +4,19 @@ export const gameBoardContainer = style({
     paddingTop: '2rem',
     display: 'flex',
     justifyContent: 'center',
-    width: '100%',
+    width: '100%'
+});
+
+export const gameBoardContainerEase = style({
     maxWidth: '480px'
+});
+
+export const gameBoardContainerMedium = style({
+    maxWidth: '580px'
+});
+
+export const gameBoardContainerHard = style({
+    maxWidth: '800px'
 });
 
 export const gameBoard = style({
