@@ -45,6 +45,8 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
             return;
         }
 
+        if (activeCard.id === cardId) return;
+
         dispatch({ type: GameActionKind.START_CHECKING_MOVE });
 
         const card = cards[cardId];
