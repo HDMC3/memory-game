@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { type MouseEvent, useEffect } from 'react';
 import { useGame } from '../../../hooks/useGame';
 import { type GameLevel } from '../../../types/game-level';
@@ -29,12 +30,24 @@ export const GameLevelsModal = ({ open, onClose }: Props) => {
     };
 
     return (
-        <>
-            {
-                // eslint-disable-next-line multiline-ternary, operator-linebreak
-                !open ? null :
-                <div className={modalContainer} onClick={handleBackdropClick}>
-                    <div className={modal}>
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    className={modalContainer} onClick={handleBackdropClick}
+                    initial={{ backgroundColor: 'rgb(100, 100, 100, 0)' }}
+                    animate={{
+                        backgroundColor: 'rgb(100, 100, 100, 0.38)'
+                    }}
+                    exit={{ backgroundColor: 'rgb(100, 100, 100, 0)' }}
+                >
+                    <motion.div
+                        className={modal}
+                        initial={{ y: window.innerWidth >= 500 ? '-100%' : '100%' }}
+                        animate={{
+                            y: 0
+                        }}
+                        exit={{ y: window.innerWidth >= 500 ? '-130%' : '140%' }}
+                    >
                         <div className={modalHeader}>
                             <h2 className={modalTitle}>Selecciona dificultad</h2>
                         </div>
@@ -60,10 +73,10 @@ export const GameLevelsModal = ({ open, onClose }: Props) => {
                                 Dificil
                             </Button>
                         </div>
-                    </div>
-                </div>
-            }
+                    </motion.div>
+                </motion.div>
+            )}
 
-        </>
+        </AnimatePresence>
     );
 };
