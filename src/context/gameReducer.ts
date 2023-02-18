@@ -8,6 +8,7 @@ export const initialState: GameState = {
     time: 0,
     gameStatus: 'pending',
     checkingMove: false,
+    moveResult: 'pending',
     cards: [],
     activeCard: null
 };
@@ -83,7 +84,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 movesCount: movesCount + 1,
                 activeCard: null,
                 checkingMove: false,
-                gameStatus: newGameStatus
+                gameStatus: newGameStatus,
+                moveResult: 'pending'
             };
         }
         case GameActionKind.HIDE_CARDS:
@@ -103,13 +105,26 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 }),
                 movesCount: state.movesCount + 1,
                 activeCard: null,
-                checkingMove: false
+                checkingMove: false,
+                moveResult: 'pending'
             };
 
         case GameActionKind.START_CHECKING_MOVE:
             return {
                 ...state,
                 checkingMove: true
+            };
+
+        case GameActionKind.MARK_MOVE_TO_FAIL:
+            return {
+                ...state,
+                moveResult: 'fail'
+            };
+
+        case GameActionKind.MARK_MOVE_TO_DONE:
+            return {
+                ...state,
+                moveResult: 'done'
             };
 
         default:

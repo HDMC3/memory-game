@@ -9,6 +9,8 @@ export type GameAction =
         | GameActionKind.START_CHECKING_MOVE
         | GameActionKind.HIDE_CARDS
         | GameActionKind.INCREASE_TIME
+        | GameActionKind.MARK_MOVE_TO_FAIL
+        | GameActionKind.MARK_MOVE_TO_DONE
     }
     | { type: GameActionKind.CHANGE_LEVEL, payload: GameLevel }
     | { type: GameActionKind.REVEAL_CARD, payload: { cardId: number } }

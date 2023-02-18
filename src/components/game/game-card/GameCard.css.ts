@@ -1,12 +1,47 @@
-import { type ComplexStyleRule, style } from '@vanilla-extract/css';
+import { type ComplexStyleRule, style, keyframes } from '@vanilla-extract/css';
 import { vars } from '../../../App.css';
 
 export const gameCardContainer = style({
     perspective: 400
 });
 
-export const revealGameCard = style({
-    transform: 'rotateY(180deg)'
+const failShake = keyframes({
+    '0%': { transform: 'rotateY(180deg) translateX(-10px)' },
+    '20%': { transform: 'rotateY(180deg) translateX(10px)' },
+    '40%': { transform: 'rotateY(180deg) translateX(-10px)' },
+    '60%': { transform: 'rotateY(180deg) translateX(10px)' },
+    '80%': { transform: 'rotateY(180deg) translateX(-10px)' },
+    '100%': { transform: 'rotateY(180deg) translateX(0)' }
+});
+
+const failBg = keyframes({
+    '0%': {
+        backgroundColor: vars.color.error,
+        opacity: 0.7
+    },
+    '100%': {
+        backgroundColor: vars.color.basic_1,
+        opacity: 1
+    }
+});
+
+const doneBg = keyframes({
+    '0%': {
+        backgroundColor: vars.color.success,
+        opacity: 0.7
+    },
+    '25%': {
+        backgroundColor: vars.color.basic_1,
+        opacity: 0.1
+    },
+    '50%': {
+        backgroundColor: vars.color.success,
+        opacity: 0.7
+    },
+    '100%': {
+        backgroundColor: vars.color.basic_1,
+        opacity: 1
+    }
 });
 
 export const gameCard = style({
@@ -21,6 +56,10 @@ export const gameCard = style({
         '&.reveal': {
             transform: 'rotateY(180deg)',
             boxShadow: `-2px 4px 0 0 ${vars.color.basic_contrast}`
+        },
+        '&.fail': {
+            animation: `${failShake} 0.4s 0.3s`,
+            animationTimingFunction: 'ease-in-out'
         }
     }
 });
@@ -40,12 +79,22 @@ export const gameCardFront = style({
     ...cardFaceCommonStyles,
     transform: 'rotateY(180deg)',
     backgroundColor: vars.color.basic_1,
-    border: `3px solid ${vars.color.basic_contrast}`
+    border: `3px solid ${vars.color.basic_contrast}`,
+    selectors: {
+        '.fail &': {
+            animation: `${failBg} 0.4s 0.3s`,
+            animationTimingFunction: 'ease-in-out'
+        },
+        '.done &': {
+            animation: `${doneBg} 0.4s 0.3s`,
+            animationTimingFunction: 'ease-in-out'
+        }
+    }
 });
 
 export const gameCardImage = style({
     position: 'absolute',
-    width: '110%',
+    width: '100%',
     filter: `drop-shadow(2px 3px 0px ${vars.color.basic_contrast})`,
     objectFit: 'fill'
 });

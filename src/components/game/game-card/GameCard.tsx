@@ -10,7 +10,7 @@ interface Props {
 const spriteBaseUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
 
 export const GameCard = ({ card: { id, status, pokemon } }: PropsWithChildren<Props>) => {
-    const { state: { checkingMove }, revealCard } = useGame();
+    const { state: { checkingMove, moveResult }, revealCard } = useGame();
 
     const handleClick = () => {
         if (status === 'done' || checkingMove) return;
@@ -21,13 +21,16 @@ export const GameCard = ({ card: { id, status, pokemon } }: PropsWithChildren<Pr
         <div className={gameCardContainer}>
             <div
                 onClick={handleClick}
-                className={gameCard + ' ' + (
-                    status === 'done' || status === 'reveal'
-                        ? 'reveal'
-                        : ''
-                )}
+                className={
+                    gameCard + ' ' +
+                    (status === 'done' || status === 'reveal' ? 'reveal' : '') + ' ' +
+                    (moveResult === 'fail' && status === 'reveal' ? 'fail' : '') + ' ' +
+                    (moveResult === 'done' && status === 'reveal' ? 'done' : '')
+                }
             >
-                <div className={gameCardFront}>
+                <div
+                    className={gameCardFront}
+                >
                     <img
                         className={gameCardImage}
                         src={`${spriteBaseUrl}${pokemon.image}`}

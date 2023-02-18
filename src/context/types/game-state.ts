@@ -7,6 +7,7 @@ export interface GameState {
     time: number
     gameStatus: 'pending' | 'playing' | 'completed'
     checkingMove: boolean
+    moveResult: 'pending' | 'fail' | 'done'
     cards: Card[]
     activeCard: Card | null
 }

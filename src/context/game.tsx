@@ -50,9 +50,14 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
         const card = cards[cardId];
 
         if (activeCard.pokemon.id === card.pokemon.id) {
-            dispatch({ type: GameActionKind.SET_DONE_CARDS, payload: { cardId } });
+            dispatch({ type: GameActionKind.MARK_MOVE_TO_DONE });
+            setTimeout(() => {
+                dispatch({ type: GameActionKind.SET_DONE_CARDS, payload: { cardId } });
+            }, 500);
             return;
         }
+
+        dispatch({ type: GameActionKind.MARK_MOVE_TO_FAIL });
 
         setTimeout(() => {
             dispatch({ type: GameActionKind.HIDE_CARDS });
