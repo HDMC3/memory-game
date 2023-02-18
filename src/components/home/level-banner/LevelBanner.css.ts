@@ -5,7 +5,8 @@ export const levelBannerContainer = style({
     border: `4px solid ${vars.color.basic_contrast}`,
     borderRadius: 10,
     overflow: 'hidden',
-    backgroundColor: vars.color.basic_1
+    backgroundColor: vars.color.basic_1,
+    boxShadow: `2px 4px 0 0 ${vars.color.basic_contrast}`
 });
 
 export const levelBannerTitle = style({

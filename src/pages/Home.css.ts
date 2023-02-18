@@ -21,7 +21,8 @@ export const innerContainer = style({
     padding: '3rem 0',
     borderRadius: 10,
     position: 'relative',
-    backgroundColor: vars.color.basic_3
+    backgroundColor: vars.color.basic_3,
+    boxShadow: `2px 4px 0 0 ${vars.color.basic_contrast}`
 });
 
 export const title = style({
