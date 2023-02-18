@@ -6,11 +6,11 @@ export const gameCardContainer = style({
 });
 
 const failShake = keyframes({
-    '0%': { transform: 'rotateY(180deg) translateX(-10px)' },
-    '20%': { transform: 'rotateY(180deg) translateX(10px)' },
-    '40%': { transform: 'rotateY(180deg) translateX(-10px)' },
-    '60%': { transform: 'rotateY(180deg) translateX(10px)' },
-    '80%': { transform: 'rotateY(180deg) translateX(-10px)' },
+    '0%': { transform: 'rotateY(180deg) translateX(-5px)' },
+    '20%': { transform: 'rotateY(180deg) translateX(5px)' },
+    '40%': { transform: 'rotateY(180deg) translateX(-5px)' },
+    '60%': { transform: 'rotateY(180deg) translateX(5px)' },
+    '80%': { transform: 'rotateY(180deg) translateX(-5px)' },
     '100%': { transform: 'rotateY(180deg) translateX(0)' }
 });
 
@@ -114,7 +114,8 @@ export const gameCardBack = style({
         transform: 'translateY(-50%)',
         border: `2px solid ${vars.color.basic_5}`,
         borderBottom: `1px solid ${vars.color.basic_5}`,
-        transition: 'background-color 0.4s, border-color 0.4s'
+        transition: 'background-color 0.4s, border-color 0.4s',
+        boxSizing: 'border-box'
     },
     ':after': {
         content: '',
@@ -126,7 +127,8 @@ export const gameCardBack = style({
         transform: 'translateY(50%)',
         border: `2px solid ${vars.color.basic_5}`,
         borderTop: `1px solid ${vars.color.basic_5}`,
-        transition: 'background-color 0.4s, border-color 0.4s'
+        transition: 'background-color 0.4s, border-color 0.4s',
+        boxSizing: 'border-box'
     },
     selectors: {
         [`${gameCard}:hover &::before`]: {
