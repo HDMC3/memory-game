@@ -1,18 +1,10 @@
 import { useEffect, useState } from 'react';
+import { timerToString } from '../../../helpers/formaters';
 import { useGame } from '../../../hooks/useGame';
 import { Button, type ButtonColor } from '../../ui/button/Button';
 import { ThemeButton } from '../../ui/theme-button/ThemeButton';
 import { GameLevelsModal } from '../game-levels-modal/GameLevelsModal';
 import { levelButton, moveStat, stat, statsContainer, statValue, timeStat, titleStat } from './StatsBanner.css';
-
-const getTimeString = (timeInSeconds: number) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
-    const seconds = timeInSeconds % 60;
-    const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
-
-    return `${minutesStr}:${secondsStr}`;
-};
 
 const levelInfo: Record<string, { text: string, color: ButtonColor }> = {
     ease: { text: 'Facil', color: 'success' },
@@ -75,7 +67,7 @@ export const StatsBanner = () => {
                         Tiempo
                     </h5>
                     <span className={statValue}>
-                        {getTimeString(time)}
+                        {timerToString(time)}
                     </span>
                 </div>
             </div>
