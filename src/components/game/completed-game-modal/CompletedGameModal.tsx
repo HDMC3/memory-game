@@ -48,9 +48,6 @@ export const CompletedGameModal = ({ open, onClose }: PropsWithChildren<Props>) 
                         }}
                         exit={{ y: window.innerWidth >= 500 ? '-130%' : '140%' }}
                     >
-                        {/* <div className={completedGameModalHeader}>
-                            <div className={completedGameModalTitle}></div>
-                        </div> */}
                         <div className={completedGameModalBody}>
                             <h2 className={completedGameModalTitle}>¡Juego completado!</h2>
                             <div className={statsContainer}>

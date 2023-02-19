@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { type Ref, useEffect, useRef, useState } from 'react';
 import { CompletedGameModal } from '../components/game/completed-game-modal/CompletedGameModal';
 import { GameBoard } from '../components/game/game-board/GameBoard';
 import { StatsBanner } from '../components/game/stats-banner/StatsBanner';
 import { useGame } from '../hooks/useGame';
 import { type GameLevel } from '../types/game-level';
-import { gameContainer } from './Game.css';
+import { canvasConffeti, gameContainer } from './Game.css';
+import { create } from 'canvas-confetti';
 
 const gameLevels: Record<string, GameLevel> = {
     ease: { name: 'ease', cardsNumber: 12 },
@@ -14,7 +15,8 @@ const gameLevels: Record<string, GameLevel> = {
 
 export const Game = () => {
     const { state: { gameStatus }, changeGameLevel } = useGame();
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
+    const canvasRef = useRef<HTMLCanvasElement>();
 
     useEffect(() => {
         const searchString = window.location.search;
@@ -30,6 +32,15 @@ export const Game = () => {
 
     useEffect(() => {
         if (gameStatus === 'completed') {
+            const confetti = create(canvasRef.current, { resize: true, useWorker: true });
+            confetti({
+                spread: 80,
+                particleCount: 160,
+                origin: {
+                    x: 0.5,
+                    y: 0.7
+                }
+            });
             setModalOpen(true);
         }
     }, [gameStatus]);
@@ -40,6 +51,11 @@ export const Game = () => {
 
     return (
         <div className={gameContainer}>
+            <canvas
+                ref={canvasRef as Ref<HTMLCanvasElement>}
+                className={canvasConffeti}
+            >
+            </canvas>
             <StatsBanner />
             <GameBoard />
             <CompletedGameModal open={modalOpen} onClose={handleCloseModal} />

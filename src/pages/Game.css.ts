@@ -7,3 +7,8 @@ export const gameContainer = style({
     gap: '1rem',
     padding: '1rem 0.5rem'
 });
+
+export const canvasConffeti = style({
+    position: 'absolute',
+    width: '100%'
+});
