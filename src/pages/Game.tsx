@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { CompletedGameModal } from '../components/game/completed-game-modal/CompletedGameModal';
 import { GameBoard } from '../components/game/game-board/GameBoard';
 import { StatsBanner } from '../components/game/stats-banner/StatsBanner';
 import { useGame } from '../hooks/useGame';
@@ -12,7 +13,8 @@ const gameLevels: Record<string, GameLevel> = {
 };
 
 export const Game = () => {
-    const { changeGameLevel } = useGame();
+    const { state: { gameStatus }, changeGameLevel } = useGame();
+    const [modalOpen, setModalOpen] = useState(true);
 
     useEffect(() => {
         const searchString = window.location.search;
@@ -26,10 +28,21 @@ export const Game = () => {
         changeGameLevel({ ...gameLevel });
     }, []);
 
+    useEffect(() => {
+        if (gameStatus === 'completed') {
+            setModalOpen(true);
+        }
+    }, [gameStatus]);
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
     return (
         <div className={gameContainer}>
             <StatsBanner />
             <GameBoard />
+            <CompletedGameModal open={modalOpen} onClose={handleCloseModal} />
         </div>
     );
 };

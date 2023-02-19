@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/canvas-confetti": "^1.6.0",
     "@vanilla-extract/css": "^1.9.5",
+    "canvas-confetti": "^1.6.0",
     "framer-motion": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
