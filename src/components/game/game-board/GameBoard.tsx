@@ -15,7 +15,7 @@ export const GameBoard = () => {
     const { state: { cards, level }, setCards } = useGame();
 
     useEffect(() => {
-        getRandomPokemons(level.cardsNumber)
+        getRandomPokemons(level)
             .then(pokemons => {
                 const cards: Card[] = pokemons.map((pokemon, i) => {
                     return {
