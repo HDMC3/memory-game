@@ -104,6 +104,7 @@ export const gameCardBack = style({
     backfaceVisibility: 'hidden',
     backgroundColor: `${vars.color.basic_3}`,
     border: `3px solid ${vars.color.basic_5}`,
+    cursor: 'pointer',
     ':before': {
         content: '',
         position: 'absolute',

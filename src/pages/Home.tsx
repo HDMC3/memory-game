@@ -13,7 +13,7 @@ export const Home = () => {
                 <h1 className={title}>Poke Memory</h1>
 
                 <p className={homeDescription}>
-                    Juega con tus pokemon favoritos encontrando las parejas con la menor cantidad de movimientos y el menor tiempo posible.
+                    Juega con tus pokemon favoritos, encontrando las parejas con la menor cantidad de movimientos y el menor tiempo posible.
                 </p>
 
             </div>
