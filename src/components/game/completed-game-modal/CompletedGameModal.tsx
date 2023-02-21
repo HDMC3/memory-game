@@ -42,11 +42,11 @@ export const CompletedGameModal = ({ open, onClose }: PropsWithChildren<Props>) 
                 >
                     <motion.div
                         className={completedGameModal}
-                        initial={{ y: window.innerWidth >= 500 ? '-100%' : '100%' }}
+                        initial={{ y: '-100%' }}
                         animate={{
                             y: 0
                         }}
-                        exit={{ y: window.innerWidth >= 500 ? '-130%' : '140%' }}
+                        exit={{ y: '-130%' }}
                     >
                         <div className={completedGameModalBody}>
                             <h2 className={completedGameModalTitle}>¡Juego completado!</h2>

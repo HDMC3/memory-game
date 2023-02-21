@@ -42,11 +42,11 @@ export const GameLevelsModal = ({ open, onClose }: Props) => {
                 >
                     <motion.div
                         className={modal}
-                        initial={{ y: window.innerWidth >= 500 ? '-100%' : '100%' }}
+                        initial={{ y: '-100%' }}
                         animate={{
                             y: 0
                         }}
-                        exit={{ y: window.innerWidth >= 500 ? '-130%' : '140%' }}
+                        exit={{ y: '-130%' }}
                     >
                         <div className={modalHeader}>
                             <h2 className={modalTitle}>Selecciona dificultad</h2>

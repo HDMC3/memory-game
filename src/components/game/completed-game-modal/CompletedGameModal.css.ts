@@ -18,14 +18,14 @@ export const completedGameModal = style({
     width: '100%',
     backgroundColor: vars.color.basic_1,
     border: `4px solid ${vars.color.basic_contrast}`,
-    borderBottomWidth: 0,
-    alignSelf: 'flex-end',
+    borderTopWidth: 0,
+    alignSelf: 'flex-start',
     boxShadow: 'none',
-    borderRadius: '10px 10px 0 0',
+    borderRadius: '0 0 10px 10px',
     zIndex: 2,
     '@media': {
         'screen and (min-width: 500px)': {
-            borderBottomWidth: '4px',
+            borderTopWidth: '4px',
             maxWidth: '370px',
             borderRadius: 10,
             boxShadow: '2px 4px 0 0',

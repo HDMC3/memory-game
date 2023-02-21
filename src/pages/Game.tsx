@@ -38,7 +38,7 @@ export const Game = () => {
                 particleCount: 160,
                 origin: {
                     x: 0.5,
-                    y: 0.7
+                    y: 0.9
                 }
             });
             setModalOpen(true);
